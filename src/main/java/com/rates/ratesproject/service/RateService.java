@@ -5,6 +5,7 @@ import com.rates.ratesproject.entity.TaxRate;
 import com.rates.ratesproject.repository.RateApp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -45,5 +46,10 @@ public class RateService {
 
     public CountryRate getSingleCountryRate(String id){
         return rateApp.getSingleCountryRate(id);
+    }
+
+    @Transactional
+    public void storeData(){
+        rateApp.storeData();
     }
 }

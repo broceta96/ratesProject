@@ -15,4 +15,5 @@ public interface RateApp {
     Map<String, Double> sortAsc(HashMap<String, Double> country);
     LinkedHashMap<String, Double> printResult(Map<String, Double> sorted);
     CountryRate getSingleCountryRate(String id);
+    void storeData();
 }

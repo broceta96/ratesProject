@@ -2,29 +2,50 @@ package com.rates.ratesproject.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "country_rate")
 public class CountryRate {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String country;
+
     @JsonProperty("standard_rate")
     private double standardRate;
+
     @JsonProperty("reduced_rate")
-    private JsonNode reducedRate;
+    private String reducedRate;
+
     @JsonProperty("reduced_rate_alt")
-    private JsonNode reducedRateAlt;
+    private String reducedRateAlt;
+
     @JsonProperty("super_reduced_rate")
-    private JsonNode superReducedRate;
+    private String superReducedRate;
+
     @JsonProperty("parking_rate")
-    private JsonNode parkingRate;
+    private String parkingRate;
+
     @JsonProperty("_comment")
     private String comment;
+
     @JsonProperty("iso_duplicate")
     private String isoDuplicate;
+
     @JsonProperty("iso_duplicate_of")
     private String isoDuplicateOf;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tax_rate")
+    private TaxRate taxRate;
+
     public CountryRate(){}
 
-    public CountryRate(String country, double standardRate, JsonNode reducedRate, JsonNode reducedRateAlt, JsonNode superReducedRate, JsonNode parkingRate) {
+    public CountryRate(String country, double standardRate, String reducedRate, String reducedRateAlt, String superReducedRate, String parkingRate) {
         this.country = country;
         this.standardRate = standardRate;
         this.reducedRate = reducedRate;
@@ -49,35 +70,35 @@ public class CountryRate {
         this.standardRate = standardRate;
     }
 
-    public JsonNode getReducedRate() {
+    public String getReducedRate() {
         return reducedRate;
     }
 
-    public void setReducedRate(JsonNode reducedRate) {
+    public void setReducedRate(String reducedRate) {
         this.reducedRate = reducedRate;
     }
 
-    public JsonNode getReducedRateAlt() {
+    public String getReducedRateAlt() {
         return reducedRateAlt;
     }
 
-    public void setReducedRateAlt(JsonNode reducedRateAlt) {
+    public void setReducedRateAlt(String reducedRateAlt) {
         this.reducedRateAlt = reducedRateAlt;
     }
 
-    public JsonNode getSuperReducedRate() {
+    public String getSuperReducedRate() {
         return superReducedRate;
     }
 
-    public void setSuperReducedRate(JsonNode superReducedRate) {
+    public void setSuperReducedRate(String superReducedRate) {
         this.superReducedRate = superReducedRate;
     }
 
-    public JsonNode getParkingRate() {
+    public String getParkingRate() {
         return parkingRate;
     }
 
-    public void setParkingRate(JsonNode parkingRate) {
+    public void setParkingRate(String parkingRate) {
         this.parkingRate = parkingRate;
     }
 
@@ -103,6 +124,30 @@ public class CountryRate {
 
     public void setIsoDuplicateOf(String isoDuplicateOf) {
         this.isoDuplicateOf = isoDuplicateOf;
+    }
+
+    public TaxRate getTaxRate() {
+        return taxRate;
+    }
+
+    public void setTaxRate(TaxRate taxRate) {
+        this.taxRate = taxRate;
+    }
+
+    public JsonNode getReducedRateAsJsonNode() {
+        try {
+            return new ObjectMapper().readTree(this.reducedRate);
+        } catch (Exception e) {
+            throw new RuntimeException("Error converting reducedRate to JsonNode", e);
+        }
+    }
+
+    public void setReducedRateFromJsonNode(JsonNode reducedRate) {
+        try {
+            this.reducedRate = reducedRate.toString();
+        } catch (Exception e) {
+            throw new RuntimeException("Error converting JsonNode to reducedRate", e);
+        }
     }
 
     @Override

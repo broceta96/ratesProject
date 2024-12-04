@@ -39,7 +39,7 @@ public class RateServiceTest {
         CountryRate countryRate = new CountryRate();
         countryRate.setCountry("Serbia");
         countryRate.setStandardRate(20.0);
-        countryRate.setReducedRate(objectMapper.valueToTree(8.0));
+        countryRate.setReducedRateFromJsonNode(objectMapper.valueToTree(8.0));
 
         Map<String, CountryRate> rates = new HashMap<>();
         rates.put("SRB", countryRate);

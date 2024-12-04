@@ -1,14 +1,25 @@
 package com.rates.ratesproject.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 
 import java.util.Map;
 
+@Entity
+@Table(name = "tax_rate")
 public class TaxRate {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @JsonProperty("last_updated")
     private String lastUpdated;
+
     @JsonProperty("disclaimer")
     private String disclaimer;
+
+    @OneToMany(mappedBy = "taxRate", cascade = CascadeType.ALL)
     @JsonProperty("rates")
     private Map<String, CountryRate> rates;
 
