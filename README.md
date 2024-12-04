@@ -7,9 +7,15 @@ https://euvatrates.com/rates.json
 
 ## Run project
 -Install Docker
+
 -Run Docker
+
 git clone https://github.com/broceta96/ratesProject.git
+
 cd rateProject
+
 ./gradlew clean build
+
 docker-compose up --build
+
 -Visit localhost:8080 in brower.
