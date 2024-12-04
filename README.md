@@ -12,10 +12,10 @@ https://euvatrates.com/rates.json
 
 git clone https://github.com/broceta96/ratesProject.git
 
-cd rateProject
+cd ratesProject
 
 ./gradlew clean build
 
 docker-compose up --build
 
--Visit localhost:8080 in brower.
+-Visit localhost:8080 in browser.
