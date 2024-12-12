@@ -12,7 +12,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Service
-public class RateService {
+public class RateService { // FIXME: use lombok with @RequiredArgsConstructor
     private RateApp rateApp;
 
     @Autowired

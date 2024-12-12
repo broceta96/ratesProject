@@ -10,7 +10,7 @@ public class AppConfig {
     @Bean
     public RestTemplate restTemplate(){
         return new RestTemplate();
-    }
+    } // FIXME: can you use webflux?
 
     @Bean
     public ObjectMapper objectMapper(){

@@ -12,6 +12,8 @@ import java.util.*;
 
 @Repository
 public class RateImpl implements RateApp{
+    // FIXME: RateApp is repository so there should be ONLY operations for DB
+    //        This whole class should be moved to service package and use @Service annotation
     private RestTemplate restTemplate;
     private ObjectMapper objectMapper;
     private TaxRateRepository taxRateRepository;
@@ -83,7 +85,7 @@ public class RateImpl implements RateApp{
 
     @Override
     public Map<String, Double> sortDesc(HashMap<String, Double> country){
-        List<Map.Entry<String, Double>> list = new ArrayList<>(country.entrySet());
+        List<Map.Entry<String, Double>> list = new ArrayList<>(country.entrySet()); // FIXME: whole of this should be done in repository interface with creating method with Sorting param and you can use it for desc or asc
         list.sort((ratesOne, rateTwo) -> rateTwo.getValue().compareTo(ratesOne.getValue()));
 
         Map<String, Double> sortDesc = new LinkedHashMap<>();

@@ -7,20 +7,20 @@ import java.util.Map;
 
 @Entity
 @Table(name = "tax_rate")
-public class TaxRate {
+public class TaxRate { // FIXME: Same comment from CountryRate
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // FIXME: use UUID
 
-    @JsonProperty("last_updated")
+    @JsonProperty("last_updated") // FIXME: remove this property and create DTO object, then create mappers and use to map DTOs to Entity. NOTE: use mapstruct
     private String lastUpdated;
 
-    @JsonProperty("disclaimer")
+    @JsonProperty("disclaimer") // FIXME: remove this property and create DTO object, then create mappers and use to map DTOs to Entity. NOTE: use mapstruct
     private String disclaimer;
 
     @OneToMany(mappedBy = "taxRate", cascade = CascadeType.ALL)
-    @JsonProperty("rates")
+    @JsonProperty("rates") // FIXME: remove this property and create DTO object, then create mappers and use to map DTOs to Entity. NOTE: use mapstruct
     private Map<String, CountryRate> rates;
 
     public String getLastUpdated() {

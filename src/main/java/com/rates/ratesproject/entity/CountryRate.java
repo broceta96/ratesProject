@@ -7,40 +7,40 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "country_rate")
-public class CountryRate {
+public class CountryRate { // FIXME: use lombok annotations: @Getter @Setter
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // FIXME: use UUID
 
     private String country;
 
-    @JsonProperty("standard_rate")
+    @JsonProperty("standard_rate") // FIXME: remove this property and create DTO object, then create mappers and use to map DTOs to Entity. NOTE: use mapstruct
     private double standardRate;
 
-    @JsonProperty("reduced_rate")
+    @JsonProperty("reduced_rate") // FIXME: remove this property and create DTO object, then create mappers and use to map DTOs to Entity. NOTE: use mapstruct
     private String reducedRate;
 
-    @JsonProperty("reduced_rate_alt")
+    @JsonProperty("reduced_rate_alt") // FIXME: remove this property and create DTO object, then create mappers and use to map DTOs to Entity. NOTE: use mapstruct
     private String reducedRateAlt;
 
-    @JsonProperty("super_reduced_rate")
+    @JsonProperty("super_reduced_rate") // FIXME: remove this property and create DTO object, then create mappers and use to map DTOs to Entity. NOTE: use mapstruct
     private String superReducedRate;
 
-    @JsonProperty("parking_rate")
+    @JsonProperty("parking_rate") // FIXME: remove this property and create DTO object, then create mappers and use to map DTOs to Entity. NOTE: use mapstruct
     private String parkingRate;
 
-    @JsonProperty("_comment")
+    @JsonProperty("_comment") // FIXME: remove this property and create DTO object, then create mappers and use to map DTOs to Entity. NOTE: use mapstruct
     private String comment;
 
-    @JsonProperty("iso_duplicate")
+    @JsonProperty("iso_duplicate") // FIXME: remove this property and create DTO object, then create mappers and use to map DTOs to Entity. NOTE: use mapstruct
     private String isoDuplicate;
 
-    @JsonProperty("iso_duplicate_of")
+    @JsonProperty("iso_duplicate_of") // FIXME: remove this property and create DTO object, then create mappers and use to map DTOs to Entity. NOTE: use mapstruct
     private String isoDuplicateOf;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "tax_rate")
+    @JoinColumn(name = "tax_rate") // FIXME: remove this property and create DTO object, then create mappers and use to map DTOs to Entity. NOTE: use mapstruct
     private TaxRate taxRate;
 
     public CountryRate(){}
